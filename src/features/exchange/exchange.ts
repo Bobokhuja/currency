@@ -1,5 +1,6 @@
 import { IExchange } from '../../models/IExchange'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
+import currency from '../../pages/Currency/Currency'
 
 interface IExchangeSlice {
   exchanges: IExchange[]

@@ -4,7 +4,6 @@ import Button from '../../components/UI/Button/Button'
 import { addExchange } from '../../features/exchange/exchange'
 import { IExchange } from '../../models/IExchange'
 import Input from '../../components/UI/Input/Input'
-import currency from '../Currency/Currency'
 
 const nextExchangeId = (todos: IExchange[]) => {
   console.log(todos)
