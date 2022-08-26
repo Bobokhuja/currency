@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/currency/build/static/css/main.9a09eda1.css",
+    "main.js": "/currency/build/static/js/main.f70cd335.js",
+    "index.html": "/currency/build/index.html",
+    "main.9a09eda1.css.map": "/currency/build/static/css/main.9a09eda1.css.map",
+    "main.f70cd335.js.map": "/currency/build/static/js/main.f70cd335.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.9a09eda1.css",
+    "static/js/main.f70cd335.js"
+  ]
+}
