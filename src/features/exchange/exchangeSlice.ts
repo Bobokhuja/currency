@@ -1,13 +1,12 @@
 import { IExchange } from '../../models/IExchange'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import currency from '../../pages/Currency/Currency'
 
 interface IExchangeSlice {
   exchanges: IExchange[]
 }
 
 const initialState: IExchangeSlice = {
-  exchanges: []
+  exchanges: JSON.parse(localStorage.getItem('exchanges') || '[]')
 }
 
 export const exchangeSlice = createSlice({

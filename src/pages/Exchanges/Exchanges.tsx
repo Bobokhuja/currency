@@ -1,7 +1,7 @@
 import React, { MouseEventHandler, useState } from 'react'
 import { useAppDispatch, useAppSelector } from '../../app/hooks'
 import Button from '../../components/UI/Button/Button'
-import { addExchange } from '../../features/exchange/exchange'
+import { addExchange } from '../../features/exchange/exchangeSlice'
 import { IExchange } from '../../models/IExchange'
 import Input from '../../components/UI/Input/Input'
 
