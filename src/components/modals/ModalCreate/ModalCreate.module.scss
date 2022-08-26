@@ -13,8 +13,19 @@
   width: 100% !important;
   margin-bottom: 18px;
 
+  &.InputCode {
+    input {
+      text-transform: uppercase;
+    }
+  }
+
+
   input {
     border: 1px solid #eee;
+
+    &::placeholder {
+      text-transform: none;
+    }
   }
 }
 

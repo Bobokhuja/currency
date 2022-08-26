@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import Button from '../../components/UI/Button/Button'
 import ModalCreate from '../../components/modals/ModalCreate/ModalCreate'
 import CurrencyList from '../../components/CurrencyList/CurrencyList'
+import classes from './Currency.module.scss'
 
 function Currency() {
   const [isShowModal, setIsShowModal] = useState<boolean>(false)
@@ -11,7 +12,7 @@ function Currency() {
       <h1>Страница валют</h1>
 
       <Button
-        // className={classes.CreateButton}
+        className={classes.CreateButton}
         onClick={() => setIsShowModal(true)}
       >
         Создать операцию

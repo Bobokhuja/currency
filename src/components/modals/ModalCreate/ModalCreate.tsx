@@ -2,10 +2,9 @@ import classes from './ModalCreate.module.scss'
 import Modal from '../Modal'
 import Input from '../../UI/Input/Input'
 import { useState } from 'react'
-import { useAppDispatch, useAppSelector } from '../../../app/hooks'
+import { useAppDispatch } from '../../../app/hooks'
 import Button from '../../UI/Button/Button'
 import { addCurrency } from '../../../features/currency/currencySlice'
-import { ICurrency } from '../../../models/ICurrency'
 
 function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) {
   const [name, setName] = useState<string>('')
@@ -18,7 +17,7 @@ function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) 
     if (name) {
       dispatch(addCurrency({
         name,
-        code
+        code: code.toUpperCase()
       }))
       onHide()
     }
@@ -29,7 +28,7 @@ function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) 
 
   return (
     <Modal isShow={isShow} onHide={onHide}>
-      <h2 className={classes.Title}>Создать Операцию</h2>
+      <h2 className={classes.Title}>Создать Валюту</h2>
 
       <form>
         <Input
@@ -46,26 +45,11 @@ function ModalCreate({onHide, isShow}: { isShow: boolean, onHide: () => void }) 
           value={code}
           placeholder="Код валюты"
           onChange={event => setCode(event.target.value)}
-          className={classes.Input}
+          className={`${classes.Input} ${classes.InputCode}`}
           required={true}
+          maxLength={3}
         />
 
-        {/*<div className={classes.RadioButtons}>*/}
-        {/*  <Radio*/}
-        {/*    label="доход"*/}
-        {/*    name="typeTransaction"*/}
-        {/*    value={StatusFilter.Income}*/}
-        {/*    onChange={() => setTransactionType('income')}*/}
-        {/*    checked={StatusFilter.Income === transactionType}*/}
-        {/*  />*/}
-        {/*  <Radio*/}
-        {/*    label="расход"*/}
-        {/*    name="typeTransaction"*/}
-        {/*    value={StatusFilter.Consumption}*/}
-        {/*    onChange={() => setTransactionType('consumption')}*/}
-        {/*    checked={StatusFilter.Consumption === transactionType}*/}
-        {/*  />*/}
-        {/*</div>*/}
         <Button
           type="submit"
           className={classes.Button}

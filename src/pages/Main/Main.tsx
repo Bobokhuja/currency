@@ -4,13 +4,14 @@ import Input from '../../components/UI/Input/Input'
 import Button from '../../components/UI/Button/Button'
 
 function Main() {
-  const [currency1Exchange, setCurrency1Exchange] = useState<string>('')
-  const [currency2Exchange, setCurrency2Exchange] = useState<string>('')
-  const [currency1, setCurrency1] = useState<string>('')
-  const [currency2, setCurrency2] = useState<string>('')
-
   const {exchanges} = useAppSelector(state => state.exchange)
   const {currencies} = useAppSelector(state => state.currency)
+
+  const [currency1Exchange, setCurrency1Exchange] = useState<string>('')
+  const [currency2Exchange, setCurrency2Exchange] = useState<string>('')
+
+  const [currency1, setCurrency1] = useState<string>(exchanges[0].currency1)
+  const [currency2, setCurrency2] = useState<string>(exchanges[0].currency2)
 
   const calculateExchange1 = (value: string): number => {
     const find = exchanges.find(exchange => {

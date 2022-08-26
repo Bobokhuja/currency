@@ -4,6 +4,7 @@ import Button from '../../components/UI/Button/Button'
 import { addExchange } from '../../features/exchange/exchangeSlice'
 import { IExchange } from '../../models/IExchange'
 import Input from '../../components/UI/Input/Input'
+import classes from './Exchanges.module.scss'
 
 const nextExchangeId = (todos: IExchange[]) => {
   console.log(todos)
@@ -14,8 +15,8 @@ const nextExchangeId = (todos: IExchange[]) => {
 function Exchanges() {
   const {exchanges} = useAppSelector(state => state.exchange)
   const {currencies} = useAppSelector(state => state.currency)
-  const [currency1, setCurrency1] = useState<string>('')
-  const [currency2, setCurrency2] = useState<string>('')
+  const [currency1, setCurrency1] = useState<string>((currencies[0] && currencies[0].code) || '')
+  const [currency2, setCurrency2] = useState<string>((currencies[1] && currencies[1].code) || '')
   const [exchange, setExchange] = useState<number>()
 
   const dispatch = useAppDispatch()
@@ -60,7 +61,7 @@ function Exchanges() {
                 <option
                   key={currency.code}
                   value={currency.code}
-                >{currency.name}</option>
+                >{currency.code}</option>
               )
             })}
           </select>
@@ -79,7 +80,7 @@ function Exchanges() {
                 <option
                   key={currency.code}
                   value={currency.code}
-                >{currency.name}</option>
+                >{currency.code}</option>
               )
             })}
           </select>
@@ -88,6 +89,7 @@ function Exchanges() {
             value={exchange?.toString() || ''}
             placeholder="Курс"
             onChange={event => setExchange(+event.target.value)}
+            className={classes.Input}
           />
         </label>
         <Button
@@ -102,7 +104,7 @@ function Exchanges() {
           <li
             key={exchange.id}
           >
-            {exchange.currency1}, {exchange.currency2}
+            {exchange.currency1}, {exchange.currency2} - {exchange.exchange}
           </li>
         )}
       </ul>

@@ -9,9 +9,13 @@ interface IInput {
   className?: string
   required?: boolean
   onKeyUp?: KeyboardEventHandler<HTMLInputElement>
+  min?: number
+  minLength?: number
+  max?: number
+  maxLength?: number
 }
 
-function Input({type, onChange, value, placeholder, className, required, onKeyUp}: IInput) {
+function Input({min, max, minLength, maxLength, type, onChange, value, placeholder, className, required, onKeyUp}: IInput) {
   const cls = [
     classes.Input,
     className || ''
@@ -26,6 +30,10 @@ function Input({type, onChange, value, placeholder, className, required, onKeyUp
           placeholder={placeholder}
           required={required}
           onKeyUp={onKeyUp}
+          min={min}
+          minLength={minLength}
+          max={max}
+          maxLength={maxLength}
         />
         {required && <span>*</span>}
       </label>
