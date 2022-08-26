@@ -5,6 +5,7 @@ import { addExchange } from '../../features/exchange/exchangeSlice'
 import { IExchange } from '../../models/IExchange'
 import Input from '../../components/UI/Input/Input'
 import classes from './Exchanges.module.scss'
+import ExchangeList from '../../components/ExchangeList/ExchangeList'
 
 const nextExchangeId = (todos: IExchange[]) => {
   console.log(todos)
@@ -46,7 +47,6 @@ function Exchanges() {
       <h1>Курсы</h1>
 
       <form>
-        <label>
           <select
             onChange={(event) => {
               setCurrency1(event.target.value)
@@ -91,7 +91,6 @@ function Exchanges() {
             onChange={event => setExchange(+event.target.value)}
             className={classes.Input}
           />
-        </label>
         <Button
           onClick={onCreateExchange}
         >
@@ -99,15 +98,7 @@ function Exchanges() {
         </Button>
       </form>
 
-      <ul>
-        {exchanges.map(exchange =>
-          <li
-            key={exchange.id}
-          >
-            {exchange.currency1}, {exchange.currency2} - {exchange.exchange}
-          </li>
-        )}
-      </ul>
+      <ExchangeList/>
     </div>
   )
 }

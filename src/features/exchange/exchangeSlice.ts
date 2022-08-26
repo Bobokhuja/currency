@@ -29,7 +29,7 @@ export const exchangeSlice = createSlice({
       }
     },
     deleteExchange(state, action: PayloadAction<number>) {
-      state.exchanges = state.exchanges.filter(exchange => exchange.id === action.payload)
+      state.exchanges = state.exchanges.filter(exchange => exchange.id !== action.payload)
     }
   }
 })

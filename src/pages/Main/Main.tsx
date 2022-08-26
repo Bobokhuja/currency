@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import { useAppSelector } from '../../app/hooks'
 import Input from '../../components/UI/Input/Input'
-import Button from '../../components/UI/Button/Button'
+import classes from './Main.module.scss'
 
 function Main() {
   const {exchanges} = useAppSelector(state => state.exchange)
@@ -10,8 +10,8 @@ function Main() {
   const [currency1Exchange, setCurrency1Exchange] = useState<string>('')
   const [currency2Exchange, setCurrency2Exchange] = useState<string>('')
 
-  const [currency1, setCurrency1] = useState<string>(exchanges[0].currency1)
-  const [currency2, setCurrency2] = useState<string>(exchanges[0].currency2)
+  const [currency1, setCurrency1] = useState<string>((exchanges[0] && exchanges[0].currency1) || '')
+  const [currency2, setCurrency2] = useState<string>((exchanges[0] && exchanges[0].currency2) || '')
 
   const calculateExchange1 = (value: string): number => {
     const find = exchanges.find(exchange => {
@@ -57,8 +57,17 @@ function Main() {
     <div>
       <h1>Главная</h1>
 
-      <form>
-        <label>
+      <form className={classes.Form}>
+        <div className={classes.Exchange}>
+          <Input
+            type="number"
+            value={currency1Exchange}
+            onChange={event => {
+              setCurrency1Exchange(event.target.value)
+              calculateExchange1(event.target.value)
+            }}
+            placeholder="Курс 1"
+          />
           <select
             onChange={(event) => {
               setCurrency1(event.target.value)
@@ -73,10 +82,22 @@ function Main() {
                 <option
                   key={currency.code}
                   value={currency.code}
-                >{currency.name}</option>
+                >{currency.code}</option>
               )
             })}
           </select>
+        </div>
+
+        <div className={classes.Exchange}>
+          <Input
+            type="number"
+            value={currency2Exchange}
+            onChange={event => {
+              setCurrency2Exchange(event.target.value)
+              calculateExchange2(event.target.value)
+            }}
+            placeholder="Курс 2"
+          />
 
           <select
             onChange={(event) => {
@@ -92,29 +113,11 @@ function Main() {
                 <option
                   key={currency.code}
                   value={currency.code}
-                >{currency.name}</option>
+                >{currency.code}</option>
               )
             })}
           </select>
-          <Input
-            type="number"
-            value={currency1Exchange}
-            onChange={event => {
-              setCurrency1Exchange(event.target.value)
-              calculateExchange1(event.target.value)
-            }}
-            placeholder="Курс 1"
-          />
-          <Input
-            type="number"
-            value={currency2Exchange}
-            onChange={event => {
-              setCurrency2Exchange(event.target.value)
-              calculateExchange2(event.target.value)
-            }}
-            placeholder="Курс 2"
-          />
-        </label>
+        </div>
       </form>
     </div>
   )

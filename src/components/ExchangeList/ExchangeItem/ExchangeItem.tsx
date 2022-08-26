@@ -1,30 +1,29 @@
-import classes from './CurrencyItem.module.scss'
-import { useState } from 'react'
-import { ICurrency } from '../../../models/ICurrency'
+import classes from './ExchangeItem.module.scss'
 import { useAppDispatch } from '../../../app/hooks'
-import { deleteCurrency } from '../../../features/currency/currencySlice'
+import { IExchange } from '../../../models/IExchange'
+import { deleteExchange } from '../../../features/exchange/exchangeSlice'
 
 
-function CurrencyItem({name, code}: ICurrency) {
-  const [isShow, setIsShow] = useState<boolean>(false)
+function ExchangeItem({exchange, currency2, currency1, id}: IExchange) {
   const dispatch = useAppDispatch()
 
   return (
     <li className={classes.Item}>
       <header className={classes.Header}>
-
         <p
           className={classes.Name}
         >
-          <span className={classes.Code}>{code}</span> -&nbsp;
-          <span className={classes.Name}>{name}</span>
+          1 <span className={classes.Currency}>{currency2}</span> =&nbsp;
+          <span className={classes.Exchange}>{exchange}</span>&nbsp;
+          <span className={classes.Currency}>{currency1}</span>
+
         </p>
 
         <div className={classes.Right}>
           <button
-            title="Удалить валюту"
+            title="Удалить курс"
             className={classes.Delete}
-            onClick={() => dispatch(deleteCurrency(code))}
+            onClick={() => dispatch(deleteExchange(id))}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1C15.1333 15.4 18.6667 19 18.6667 19" stroke="#777777" strokeWidth="2"/>
@@ -38,4 +37,4 @@ function CurrencyItem({name, code}: ICurrency) {
   )
 }
 
-export default CurrencyItem
+export default ExchangeItem
