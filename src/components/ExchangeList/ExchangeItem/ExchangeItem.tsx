@@ -23,7 +23,10 @@ function ExchangeItem({exchange, currency2, currency1, id}: IExchange) {
           <button
             title="Удалить курс"
             className={classes.Delete}
-            onClick={() => dispatch(deleteExchange(id))}
+            onClick={() => dispatch(deleteExchange({
+              currency1,
+              currency2
+            }))}
           >
             <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
               <path d="M1 1C15.1333 15.4 18.6667 19 18.6667 19" stroke="#777777" strokeWidth="2"/>

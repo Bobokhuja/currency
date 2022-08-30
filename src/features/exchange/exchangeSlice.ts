@@ -28,10 +28,17 @@ export const exchangeSlice = createSlice({
         state.exchanges.push(action.payload)
       }
     },
-    deleteExchange(state, action: PayloadAction<number>) {
-      state.exchanges = state.exchanges.filter(exchange => exchange.id !== action.payload)
+    deleteExchange(state, action: PayloadAction<{currency1: string, currency2: string}>) {
+      state.exchanges = state.exchanges
+        .filter(exchange => (exchange.currency1 !== action.payload.currency1)
+          && exchange.currency2 !== action.payload.currency2)
+    },
+    deleteExchanges(state, action: PayloadAction<string>) {
+      state.exchanges = state.exchanges
+        .filter(exchange => (exchange.currency1 !== action.payload)
+          && exchange.currency2 !== action.payload)
     }
   }
 })
 
-export const {deleteExchange, addExchange} = exchangeSlice.actions
+export const {deleteExchange, addExchange, deleteExchanges} = exchangeSlice.actions

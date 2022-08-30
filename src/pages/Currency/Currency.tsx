@@ -15,7 +15,7 @@ function Currency() {
         className={classes.CreateButton}
         onClick={() => setIsShowModal(true)}
       >
-        Создать операцию
+        Создать валюту
       </Button>
       <main>
         <CurrencyList/>

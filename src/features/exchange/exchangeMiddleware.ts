@@ -19,8 +19,22 @@ export const exchangeMiddleware = (storeAPI: any) => (next: any) => (action: any
       const localExchanges = localStorage.getItem('exchanges')
       const copyExchanges: IExchange[] = JSON.parse(localExchanges!)
       localStorage.setItem('exchanges', JSON.stringify(
-        copyExchanges.filter(exchange => exchange.id !== action.payload)
+        copyExchanges.filter(exchange => (exchange.currency1 !== action.payload.currency1)
+          || (exchange.currency2 !== action.payload.currency2)
+        )))
+      return next(action)
+    }
+    case 'exchange/deleteExchanges': {
+      const localExchanges = localStorage.getItem('exchanges')
+      const copyExchanges: IExchange[] = JSON.parse(localExchanges!)
+      console.log(copyExchanges)
+      localStorage.setItem('exchanges', JSON.stringify(
+        copyExchanges
+          .filter(exchange => (exchange.currency1 !== action.payload) && (exchange.currency2 !== action.payload))
       ))
+      console.log(copyExchanges
+        .filter(exchange => (exchange.currency1 !== action.payload)
+          || (exchange.currency2 !== action.payload)))
       return next(action)
     }
     default:
